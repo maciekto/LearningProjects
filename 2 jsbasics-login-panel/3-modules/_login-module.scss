@@ -1,0 +1,43 @@
+
+//REGISTRATION MODULE    
+@mixin flexcenter {
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.registrationFormModule{
+    width: 200px;
+    height: 160px;
+    border: 1px solid black;
+    border-radius: 1px;
+}
+.form{
+    @include flexcenter();
+    justify-content: space-between;
+}
+.formLabel{
+    @include flexcenter();
+    width: 200px;
+    height: 50px;
+}
+.error{
+    font-size: 0.55rem;
+    @include flexcenter();
+    color: white;
+    margin: 5px 5px 5px 5px;
+    width: 150px;
+    height: 15px;
+    background-color: brown;
+}
+input{
+    border-radius: 1px;
+    border: 1px solid black;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+.success{
+    font-size: 0.6rem;
+    background-color: green($color: #000000);
+}

@@ -1,0 +1,23 @@
+.chartContainer {
+  width: 1000px;
+  height: 600px;
+}
+
+.chartGrid {
+  width: 1000px;
+  height: 500px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  -ms-grid-rows: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-gap: 5px;
+}
+
+.gridCell {
+  width: 1fr;
+  height: 1fr;
+  background-color: rgba(73, 75, 77, 0.253);
+}
+/*# sourceMappingURL=app.css.map */
