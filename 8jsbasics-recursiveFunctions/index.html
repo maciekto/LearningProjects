@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Functions</title>
+    <style>
+        :root{
+            font-size: 10px;
+            font-family: sans-serif;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .Header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+        .Header-Inner{
+            text-align: center;
+            width: 300px;
+            height: 130px;
+            border: 1px solid black;
+            box-shadow: 3px 3px 3px black;
+        }
+        .Header-Title{
+            font-size: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="Header">
+        <div class="Header-Inner">
+            <p class="Header-Title">Recursive Functions</p>
+            <p class="Header-Content"> WATCH CONSOLE AND CODE </p>
+        </div>
+    </header>
+    <script>
+
+// writed by myself to understand (counting form x to 10) with function inside counting to 5 each time
+console.log('//writed by myself to understand (counting form x to 10) with function inside counting to 5 each time');
+        function recursive1(x){
+            if(x==10){
+                return x;
+            }else{
+                function recursive2(y){
+                    if(y==5){
+                        return y;
+                    }else{
+                        return recursive2(y+1);
+                    } 
+                }
+                console.log(recursive2(0));
+                return recursive1(x+1);
+            }
+            
+        }
+        console.log(recursive1(0));
+        /*
+            recursive1(0);
+                return recursive1(0+1); //x == 1
+                    return recursive1(1+1); //x == 2
+                        return recursive1(2+1); x == 3
+                            ...
+                                return recursive1(9+1); x == 10;
+                                    x==10 => return x;
+
+
+        */
+// function with two numbers, second one is the n power of number one
+// also, done by es6+ arrow functions
+console.log('// function with two numbers, second one is the n power of number one, also, done by es6+ arrow functions ')
+        const powerOfFirstNumber = (first, powertimes) => {
+            if(powertimes == 1){
+                return first;
+            }else{
+                return first*powerOfFirstNumber(first, powertimes -1);
+            }
+            
+        }
+        console.log(powerOfFirstNumber(2, 5));
+
+// recursive function counting factorial of 4
+console.log('// recursive function counting factorial of 4');
+        const factorial = (x) => {
+            if(x==1){
+                return 1;
+            }else{
+                return x*factorial(x-1);
+            }
+        }
+        console.log(factorial(4));
+console.log('------------------');
+console.log('// Just learned about short if in the occasion (condition) ? do when condition is true : do when condition is false');
+
+        const number = 7;
+        (number==7) ? console.log("Number is 7") : console.log('Number is any number expect 7');
+    </script>
+</body>
+</html>

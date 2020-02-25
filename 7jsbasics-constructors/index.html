@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constructor</title>
+    <title>Class + Constructor</title>
     <style>
         :root{
             font-size: 10px;
@@ -78,7 +78,7 @@
 </head>
 <body>
     <header class="Header">
-        Constructor
+        Class + Constructor
     </header>
     <main class="Main">
         <form action="" class="Form">
@@ -114,6 +114,7 @@
         e.preventDefault();
         const name = document.querySelector('.InputArea-Name').value;
         const surename = document.querySelector('.InputArea-Surename').value;
+        document.querySelector('.ResultArea-Result').innerHTML = "Done, now click btn."
 // defining a constructor for name and surename
         class Ludzik{
             constructor(imie, nazwisko){
@@ -148,7 +149,18 @@
     const InputArea__Submit = document.querySelector('.InputArea-Submit');
     InputArea__Submit.addEventListener('click', getUserDataForm1);
 
-    
+    class Day2Example {
+        constructor(street,streetnumber, room, floor){
+            this.street = street;
+            this.streetnumber = streetnumber;
+            this.room = room;
+            this.floor = floor;
+        }
+        fullAdress = () => `${this.street}: ${this.streetnumber}/${this.room}, floor: ${this.floor}`;
+    }
+    const adress = new Day2Example('Władysława','23', '56', '4');
+    console.log(adress.fullAdress());
+    console.log(this);
 </script>
 </body>
 </html>
