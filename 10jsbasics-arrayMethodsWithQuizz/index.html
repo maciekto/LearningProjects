@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta autor="Maciej Tomaszewski">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta keywords="JS,Js,js,promise,Promise,Promises">
+    <meta description="Learn about promises">
+    <title>Array Methods</title>
+    <style>
+        :root{
+            font-size: 10px;
+            font-family: sans-serif;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .Body-Inner{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .Header{
+            width: 100vw;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .Header-Title{
+            font-weight: 400;
+            font-size: 2.5rem;
+        }
+        .Main{
+            width: 100vw;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .Main-Article{
+            width: 400px;
+            height: 200px;
+            display: inherit;
+            align-items: inherit;
+            justify-content: inherit;
+            flex-direction: column;
+        }
+        .Main-Title{
+            font-size: 1.7rem;
+        }
+        .Main-ForeachList{
+            padding: 0;
+        }
+        .Main-Name{
+            transition: 1s;
+            cursor: pointer;
+            list-style-type: none;
+            text-align: center;
+        }
+        .Main-Name:hover{
+            color: purple;
+            cursor: pointer;
+        }
+        .Main-Name_clicked{
+            transition: 1s;
+            font-weight: bold;
+            font-size: 2rem;
+            color: purple;
+        }
+        .Main-AppBtn{
+            transition: 0.4s ease-in-out;
+            margin-top: 15px;
+            border-radius: 3px;
+            border: 1px solid black;
+            width: 50px;
+            height: 25px;
+            background: white;
+        }
+        .Main-AppBtn:hover{
+            transition: 0.4s ease-in-out;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* QUIZ APP */
+
+        .MainApp{
+            display: none;
+            width: 60vw;
+            height: 300px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0px 0px 5px 2px black;
+            border-radius: 10px;
+        }
+            .MainApp_animation{
+                animation-name: opacity;
+                animation-duration: 3s;
+                animation-iteration-count: 1;
+            }
+            @keyframes opacity {
+                from{
+                    opacity: 0;
+                }to{
+                    opacity: 1;
+                }
+            }
+        .MainApp-TitleBox{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: inherit;
+            height: 100px;
+        }
+        .MainApp-Title{
+            display: inline;
+            font-size: 4rem;
+            text-align: center;
+        }
+        .MainApp-QuestionBox{
+            width: inherit;
+            height: 100px;
+            display: inherit;
+            align-items: inherit;
+            justify-content: inherit;
+        }
+        .MainApp-Question{
+            cursor: pointer;
+            display: inline;
+            font-size: 5rem;
+        }
+        .MainApp-AnswerBox{
+            width: calc(60vw - 2px);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: row;
+        }
+        .MainApp-Answer1Box{
+            height: 100px;
+            width: calc(50vw/4);
+            display: inherit;
+            align-items: inherit;
+            justify-content: center;
+        }
+        .MainApp-Answer2Box{
+            height: 100px;
+            width: calc(50vw/4);
+            display: inherit;
+            align-items: inherit;
+            justify-content: center;
+        }
+        .MainApp-Answer3Box{
+            height: 100px;
+            width: calc(50vw/4);
+            display: inherit;
+            align-items: inherit;
+            justify-content: center;
+        }
+        .MainApp-Answer4Box{
+            height: 100px;
+            width: calc(50vw/4);
+            display: inherit;
+            align-items: inherit;
+            justify-content: center;
+        }
+        .MainApp-AnswerBtn{
+            transition: 0.2s;
+            width: 11vw;
+            height: 60px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px 1px black;
+            cursor: pointer;
+        }
+        .MainApp-AnswerBtn:hover{
+            transition: 0.1s;
+            box-shadow: 0px 0px 0px black, 0px 0px 3px 1px inset black;
+        }
+    </style>
+</head>
+<body>
+    <div class="Body-Inner">
+        <header class="Header">
+            <h2 class="Header-Title">Array Methods</h2>
+        </header>
+        <main class="Main">
+            <article class="Main-Article">
+                <p class="Main-Title">Watch Console</p>
+
+                <ul class="Main-ForeachList">
+
+                </ul>
+                <button class="Main-AppBtn">Quiz</button>
+            </article>
+        </main>
+        <main class="MainApp">
+            <header class="MainApp-TitleBox">
+                <p class="MainApp-Title">QUIZ!</p> 
+            </header>
+            <article class="MainApp-AnswerBox">
+                <section class="MainApp-Answer1Box">
+                    <div class="MainApp-AnswerBtn MainAppAnswerBtn1"></div>
+                </section>
+                <section class="MainApp-Answer2Box">
+                    <div class="MainApp-AnswerBtn MainAppAnswerBtn2"></div>
+                </section>
+                <section class="MainApp-Answer3Box">
+                    <div class="MainApp-AnswerBtn MainAppAnswerBtn3"></div>
+                </section>
+                <section class="MainApp-Answer4Box">
+                    <div class="MainApp-AnswerBtn MainAppAnswerBtn4"></div>
+                </section>
+            </article>
+            <article class="MainApp-QuestionBox">
+                <p class="MainApp-Question">START</p>
+            </article>
+        </main>
+    </div>
+    <script>
+// 1) basic methods
+
+        const myarray = [1,2,3,4,5];
+
+    // add and delete indexes !! changing existing array
+        // pop / push
+
+        myarray.pop(); // delete last index
+
+        myarray.push('Maciej'); // add last index 
+
+        // shift / unshift
+        myarray.pop(); // delete again
+
+        myarray.shift(); // delete first index 
+        
+        myarray.unshift('Maciej'); // add first index to array
+        
+        console.log(myarray); 
+
+    // combine arrays
+        // concat -> allows you to combine arrays 
+
+            let array1 = ['dog', 'cat', 'goose'];
+
+            console.log(array1);
+
+            let array2 = ['elephant', 'giraffe'];
+
+            console.log(array2);
+
+            let combineArrays = [].concat(array1, array2, ['COMBINED']);
+
+            console.log(combineArrays);
+            console.log(`Here is array displayed like on site -> ${combineArrays}, we want to add spaces between indexes`);
+        // join -> allows you to insert something between indexes in string
+            console.log(`Use method join for that -> ${combineArrays.join(', ')}`);
+
+    //excercise   
+        let separate = [];
+        function separateLine(i, lines){
+            if(i==lines){
+                
+            }else{
+                separate.push('-');
+                return separateLine(i+1, lines);
+            }
+        }
+        console.log(separateLine(0, 70));
+        console.log(`${separate.join('')}`)
+// 2) More methods
+        // slice -> allows you to exploit some of array by creating new array with those parameters
+
+            arraySlice = [1,2,3,4,5,6,7,8];
+            console.log(arraySlice.slice(2,6));
+            // slice(begin, arrayLength)
+
+
+        // splice -> allows you to delete indexes after index passed in first argument. Splice is modyfying main function and returns deleted elements.
+            // splice(begin, how much elements to delete, item to insert )
+            arraySplice = [1,2,3,4,5,6,7,8];
+            arraySplice.splice(5,0, ...['Maciej', 'tomaszewski']); 
+            console.log(arraySplice);
+
+        // excercise
+
+            let separate2 = [];
+            separate2.splice(0,0,...['    YO']);
+            console.log(`${separate2.join('')}`)
+
+        // foreach 
+
+
+            let arrayForeach = [1,2,3,4,5,6,7,8];
+
+            arrayForeach.forEach((element, index) => {
+                console.log(`${element}  ${index} `);
+            });
+
+            const list = document.querySelector('.Main-ForeachList');
+            const listArray = ['Dominika', 'Michal', 'Janek', 'Lila', 'Daniel'];
+
+            listArray.forEach((name, index) =>{
+                let nameDom = document.createTextNode(name);
+                li = document.createElement('li');
+                li.classList.add(`Main-Name${index}`, `Main-Name`);
+                li.appendChild(nameDom);
+                list.appendChild(li);
+            });
+
+            const listArrayclick = document.querySelectorAll('li');
+
+            listArrayclick.forEach((e)=>{
+                e.addEventListener('click', (e) => {
+                   listArrayclick.forEach(element =>{
+                       element.classList.remove('Main-Name_clicked');
+                   })
+                    e.target.classList.add('Main-Name_clicked');
+                });
+                
+            });
+            console.log(listArrayclick);
+
+// 3) Last methods
+            const shoppingItems = [
+                {
+                    name: 'Meat',
+                    price: 15.5,
+                    category: 'food',
+                    quantity: 2,
+                },
+                {
+                    name: 'Soap',
+                    price: 2.99,
+                    category: 'cosmetics',
+                    quantity: 1,
+                },
+                {
+                    name: 'Carrots',
+                    price: 1.25,
+                    category: 'food',
+                    quantity: 6,
+                },
+                {
+                    name: 'Shampoo',
+                    price: 10.23,
+                    category: 'cosmetics',
+                    quantity: 2,
+                },
+                {
+                    name: 'Cheese',
+                    price: 7.58,
+                    category: 'food',
+                    quantity: 1,
+                },
+
+            ];
+            console.log(shoppingItems);
+        // filter -> allows you to create array of main array based on given condition
+            const afterFilter = shoppingItems.filter((element) => element.category == "food");
+            console.log(afterFilter);
+        
+        // find -> gives you just first found value
+
+                console.log(shoppingItems.find((element)=>{
+                    return element.quantity === 2;
+                }));
+        // map -> you can just map all elements here
+
+                const finalResultMap = shoppingItems.map((element) =>{
+                    return `${element.name} | ${element.price}`;
+                });
+                console.log(finalResultMap);
+        // reduce -> reduce(acc, element, index, src)
+
+                const finalPrice = shoppingItems.reduce((final,element) => {
+                    return final+element.price;
+                }, 0);
+                console.log(`Final Price IS: ${finalPrice.toFixed(2)}`);
+
+        // priceOfCosmetics 
+                
+                const priceOfCosmetics = shoppingItems.filter((element) => {
+                    return element.category === 'cosmetics';
+                }).reduce((priceA, elem) =>{
+                    return priceA + elem.price;
+                },0)
+                console.log(`Price for cosmetics equal: ${priceOfCosmetics}`);
+
+        /* summary
+            1) basic methods
+                - .pop - delete last index
+                - .push - add element to last index
+                - .shift - delete first index
+                - .unshift - add element to first index
+                - .concat - combine arrays
+                - .join - insert something between elements
+            2) next methods
+                - .slice - cuts indexes from array
+                - .splice - cuts indexes from a to end and add new if you want, or cut from a to b
+                - foreach - loop via array passing index and elements
+            3) last methods
+                - .filter - as name says, filter via array giving indexes based on condition with elements
+                - .find - finds first and only one element in array matching criteria
+                - .map - mapping array and creating new one based on condition
+                - reduce - has accumulator which gives opportunity to adding elements and manipulate them inside 
+        */
+        // Create a fast quiz app using new knowledge//
+    
+            const AppBtn = document.querySelector('.Main-AppBtn');
+            AppBtn.addEventListener('click', () => {
+                document.querySelector('.Main').style = "display: none";
+                document.querySelector('.Header').style = "display: none";
+                const MainApp = document.querySelector('.MainApp');
+                MainApp.style.display = "flex";
+                MainApp.classList.add(`MainApp_animation`);
+            })
+
+    </script>
+</body>
+</html>
