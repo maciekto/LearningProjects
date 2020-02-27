@@ -134,10 +134,10 @@
         .MainApp-Question{
             cursor: pointer;
             display: inline;
-            font-size: 5rem;
+            font-size: 2rem;
         }
         .MainApp-AnswerBox{
-            width: calc(60vw - 2px);
+            width: 60vw;
             height: 100px;
             display: flex;
             align-items: center;
@@ -172,7 +172,14 @@
             align-items: inherit;
             justify-content: center;
         }
+        .MainApp-Result{
+            display: none;
+        }
         .MainApp-AnswerBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
             transition: 0.2s;
             width: 11vw;
             height: 60px;
@@ -209,16 +216,19 @@
             </header>
             <article class="MainApp-AnswerBox">
                 <section class="MainApp-Answer1Box">
-                    <div class="MainApp-AnswerBtn MainAppAnswerBtn1"></div>
+                    <div class="MainApp-AnswerBtn MainApp-AnswerBtn1"></div>
                 </section>
                 <section class="MainApp-Answer2Box">
-                    <div class="MainApp-AnswerBtn MainAppAnswerBtn2"></div>
+                    <div class="MainApp-AnswerBtn MainApp-AnswerBtn2"></div>
                 </section>
                 <section class="MainApp-Answer3Box">
-                    <div class="MainApp-AnswerBtn MainAppAnswerBtn3"></div>
+                    <div class="MainApp-AnswerBtn MainApp-AnswerBtn3"></div>
                 </section>
                 <section class="MainApp-Answer4Box">
-                    <div class="MainApp-AnswerBtn MainAppAnswerBtn4"></div>
+                    <div class="MainApp-AnswerBtn MainApp-AnswerBtn4"></div>
+                </section>
+                <section class="MainApp-Result">
+                    <ul class="MainApp-ResultList"></ul>
                 </section>
             </article>
             <article class="MainApp-QuestionBox">
@@ -414,6 +424,7 @@
                 - .map - mapping array and creating new one based on condition
                 - reduce - has accumulator which gives opportunity to adding elements and manipulate them inside 
         */
+        console.log('________________________________________________________________________________');
         // Create a fast quiz app using new knowledge//
     
             const AppBtn = document.querySelector('.Main-AppBtn');
@@ -423,7 +434,187 @@
                 const MainApp = document.querySelector('.MainApp');
                 MainApp.style.display = "flex";
                 MainApp.classList.add(`MainApp_animation`);
-            })
+            });
+            class Answers{
+                constructor(id, answerDone){
+                    this.id = id;
+                    this.answerDone = answerDone;
+                }
+            }
+            const questionData = [
+                {
+                    question_id: 1,
+                    question: '2*2',
+                    answer1: [6,false],
+                    answer2: [7, false],
+                    answer3: [4, true],
+                    answer4: [3, false],
+                },
+                {
+                    question_id: 2,
+                    question: 'Delete Last index in array',
+                    answer1: ['.push()', false],
+                    answer2: ['.pop()', true],
+                    answer3: ['.concat', false],
+                    answer4: ['.shift', false],
+                },
+                {
+                    question_id: 3,
+                    question: '3*3',
+                    answer1: ['9', true],
+                    answer2: ['26', false],
+                    answer3: ['4', false],
+                    answer4: ['2', false],
+                }
+            ];
+
+            let QuestionBtn= document.querySelector('.MainApp-Question');
+            QuestionBtn.addEventListener('click', START); 
+            
+            function START(){
+                QuestionBtn.innerHTML = questionData[0].question;
+                let answer = document.querySelectorAll('.MainApp-AnswerBtn');
+                let answer0 = document.querySelector('.MainApp-AnswerBtn1');
+                let answer1 = document.querySelector('.MainApp-AnswerBtn2');
+                let answer2 = document.querySelector('.MainApp-AnswerBtn3');
+                let answer3 = document.querySelector('.MainApp-AnswerBtn4');
+
+                let finish = 0;
+                let questionNumber = 1;
+                var questionAnswerData = [];
+                question(questionNumber);
+                
+                //question(questionNumber);
+                function question(number){
+                    //console.log('/* START OF FUNCTION ')
+                    let array = questionData.forEach((element, index) => {
+                        //console.log(`FOR EACH ON QUESTION DATA -> ${element.question_id}`);
+                        if(number === element.question_id){
+                                QuestionBtn.innerHTML = element.question;
+                                answer0.innerHTML = element.answer1[0];
+                                answer1.innerHTML = element.answer2[0];
+                                answer2.innerHTML = element.answer3[0];
+                                answer3.innerHTML = element.answer4[0];
+                                
+                                answer0.addEventListener('click', sendAnswer0);
+                                answer1.addEventListener('click', sendAnswer1);
+                                answer2.addEventListener('click', sendAnswer2);
+                                answer3.addEventListener('click', sendAnswer3);
+                                function sendAnswer0(){
+                                    if(element.answer1[1] === false){
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer1[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }else{
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer1[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }
+                                    //console.log('hej');
+                                    answer0.removeEventListener("click", sendAnswer0);
+                                    answer1.removeEventListener("click", sendAnswer1);
+                                    answer2.removeEventListener("click", sendAnswer2);
+                                    answer3.removeEventListener("click", sendAnswer3);
+                                };
+                                function sendAnswer1(){
+                                    if(element.answer2[1] === false){
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer2[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }else{
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer2[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }
+                                    //console.log('hej');
+                                    answer1.removeEventListener("click", sendAnswer1);
+                                    answer0.removeEventListener("click", sendAnswer0);
+                                    answer2.removeEventListener("click", sendAnswer2);
+                                    answer3.removeEventListener("click", sendAnswer3);
+                                };
+                                function sendAnswer2(){
+                                    if(element.answer3[1] === false){
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer3[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }else{
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer3[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }
+                                    //console.log('hej');
+                                    answer1.removeEventListener("click", sendAnswer1);
+                                    answer0.removeEventListener("click", sendAnswer0);
+                                    answer2.removeEventListener("click", sendAnswer2);
+                                    answer3.removeEventListener("click", sendAnswer3);
+                                };
+                                function sendAnswer3(){
+                                    if(element.answer4[1] === false){
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer4[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }else{
+                                        setTimeout(()=>{
+                                            let passToAnswerData = new Answers(element.question_id, element.answer4[1]);
+                                            questionAnswerData.push(passToAnswerData);
+                                            console.log(questionAnswerData);
+                                            //console.log(passToAnswerData);
+                                            question(number+1);
+                                        },200);
+                                    }
+                                    //console.log('hej');
+                                    answer1.removeEventListener("click", sendAnswer1);
+                                    answer0.removeEventListener("click", sendAnswer0);
+                                    answer2.removeEventListener("click", sendAnswer2);
+                                    answer3.removeEventListener("click", sendAnswer3);
+                                };
+
+                    }else if(number == questionData[2].question_id+1){
+                        if(finish > 0){
+                            console.log('FINIT');
+                        }else{
+                            finish+=1;
+
+                            let allData = [].concat(questionData, questionAnswerData);
+                            const li = document.createElement('li');
+                            console.log(allData);
+
+                        }
+                    }
+                    QuestionBtn.removeEventListener('click', START);
+                });
+                   //console.log(' ------ */ FINISH OF FUNCTION');
+            }
+        };
+            
 
     </script>
 </body>
