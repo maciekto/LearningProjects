@@ -429,8 +429,10 @@
     
             const AppBtn = document.querySelector('.Main-AppBtn');
             AppBtn.addEventListener('click', () => {
-                document.querySelector('.Main').style = "display: none";
-                document.querySelector('.Header').style = "display: none";
+                const Main = document.querySelector('.Main');
+                const Header = document.querySelector('.Header');
+                Main.style = "display: none";
+                Header.style = "display: none";
                 const MainApp = document.querySelector('.MainApp');
                 MainApp.style.display = "flex";
                 MainApp.classList.add(`MainApp_animation`);
@@ -602,10 +604,32 @@
                             console.log('FINIT');
                         }else{
                             finish+=1;
+                            const MainAppAnswer1Box = document.querySelector('.MainApp-Answer1Box');
+                            MainAppAnswer1Box.style = 'display: none;';
+                            const MainAppAnswer2Box = document.querySelector('.MainApp-Answer2Box');
+                            MainAppAnswer2Box.style = 'display: none;';
+                            const MainAppAnswer3Box = document.querySelector('.MainApp-Answer3Box');
+                            MainAppAnswer3Box.style = 'display: none;';
+                            const MainAppAnswer4Box = document.querySelector('.MainApp-Answer4Box');
+                            MainAppAnswer4Box.style = 'display: none;';
+                            QuestionBtn.innerHTML = "Quiz Finished";
 
-                            let allData = [].concat(questionData, questionAnswerData);
-                            const li = document.createElement('li');
-                            console.log(allData);
+                            const goodAnswer1 = questionData[0].answer3[0];
+                            const goodAnswer2 = questionData[1].answer2[0];
+                            const goodAnswer3 = questionData[2].answer1[0];
+                            console.log(goodAnswer1+goodAnswer2+goodAnswer3);
+
+                            if(questionData[0].answer3[1] == questionAnswerData[0].answerDone){
+                                console.log('HEJ');
+                            }
+                            
+
+                            
+                            
+                            
+                            
+                            document.querySelector('.MainApp-ReesultList');
+
 
                         }
                     }
