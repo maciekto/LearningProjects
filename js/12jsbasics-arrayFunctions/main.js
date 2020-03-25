@@ -1,3 +1,5 @@
+ const hair = 'HEHEHHE';
+ 
  // Arrow functions
 class Doma{
     constructor(hair, nails, eye){
@@ -22,5 +24,6 @@ const DOMA = new Doma('black', 'not done', 'beautiful');
 
 DOMA.Arrow(); // arrow function takes her context in 'this' keyword
 DOMA.getDoma(); // normal function takes global context as 'this' keyword so its undefined
+console.log(this.hair);
 
 
