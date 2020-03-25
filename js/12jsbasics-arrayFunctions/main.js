@@ -26,4 +26,15 @@ DOMA.Arrow(); // arrow function takes her context in 'this' keyword
 DOMA.getDoma(); // normal function takes global context as 'this' keyword so its undefined
 console.log(this.hair);
 
+function hey(name){
+    console.log(this.name);
+}
+hey('Maciek');
+
+const hey2 = name => name;
+
+console.log(hey2('Maciek'));
+
+
+
 
