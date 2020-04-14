@@ -1,8 +1,7 @@
 <template>
     <div class="MainValues">
         <p class="MainValues-Data">
-            Sydney <br />
-            6:20 pm, 4.00 am
+            {{ data }}
         </p>
     </div>
 </template>
@@ -10,6 +9,12 @@
 <script>
 export default {
   name: 'MainValues',
+  data() {
+    return {
+      // eslint-disable-next-line
+      data: null,
+    };
+  },
 };
 </script>
 
