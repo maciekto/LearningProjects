@@ -1,19 +1,25 @@
 <template>
     <div class="MainValues">
         <p class="MainValues-Data">
-            {{ data }}
+            {{ dataFromDate }}
         </p>
     </div>
 </template>
 
 <script>
 export default {
+  el: '#example',
   name: 'MainValues',
   data() {
     return {
       // eslint-disable-next-line
       data: null,
     };
+  },
+  computed: {
+    dataFromDate() {
+      return this.data;
+    },
   },
 };
 </script>
