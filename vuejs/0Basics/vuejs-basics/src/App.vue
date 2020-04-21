@@ -6,10 +6,10 @@
       <Form />
       <More />
     </div>
-    <!-- <button @click="getLocation">VIEW YOUR LOCATION</button>
+    <button @click="getLocation">VIEW YOUR LOCATION</button>
     <div>{{ width }}</div>
     <div class="location"></div>
-    <div class="map"></div>-->
+    <div class="map"></div>
   </div>
 </template>
 
