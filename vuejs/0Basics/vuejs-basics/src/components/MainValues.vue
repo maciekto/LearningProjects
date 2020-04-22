@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       // eslint-disable-next-line
-      data: null,
+      data: 'LEarn Vue in documentation',
     };
   },
   computed: {
