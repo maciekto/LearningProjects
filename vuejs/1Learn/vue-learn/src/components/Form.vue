@@ -1,7 +1,7 @@
 <template>
     <main class="Form">
         <label>Login:<br />
-            <input type="text">
+            <input type="text" v-model="login">
         </label>
         <label>Repeat login:<br />
             <input type="text">
@@ -20,6 +20,11 @@
 <script>
 export default {
   name: 'Form',
+  data() {
+    return {
+      login: 'give login',
+    };
+  },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -37,6 +42,7 @@ export default {
         text-align: center;
     }
     input{
+        border-radius: 5px;
         width: 25vw;
         transition: box-shadow 0.4s;
         border: none;
@@ -44,6 +50,7 @@ export default {
         outline: none;
     }
     input[type='submit']{
+        border-radius: 5px;
         border-bottom: 1px solid black;
         width: 10vh;
         padding: 5px;
@@ -59,6 +66,6 @@ export default {
     }
     input:hover{
         transition: 0.4s;
-        box-shadow: 0px 0px 5px black;
+        box-shadow: 0px 0px 3px black;
     }
 </style>
