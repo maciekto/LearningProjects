@@ -47,7 +47,7 @@ export default {
         color: red;
     }
     .blue{
-        color: blue;
+        color: lightblue;
     }
     .yellow{
         color: yellow;
