@@ -1,15 +1,23 @@
 <template>
   <div class="App">
-    <Form />
+    <Clicker :counter="counter" />
+    <Bar />
   </div>
 </template>
 <script>
-import Form from './components/Form.vue';
+import Clicker from './components/Clicker.vue';
+import Bar from './components/Bar.vue';
 
 export default {
   name: 'App',
   components: {
-    Form,
+    Clicker,
+    Bar,
+  },
+  data() {
+    return {
+      counter: 1,
+    };
   },
 };
 </script>
@@ -27,5 +35,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
 </style>
