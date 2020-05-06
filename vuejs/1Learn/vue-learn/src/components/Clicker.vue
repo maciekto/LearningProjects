@@ -134,8 +134,8 @@ export default {
         box-shadow: 0px 0px 3px black;
         outline: none;
         @media (min-width: 450px) and (max-width: 767px){
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
         }
         @media (min-width: 768px) and (max-width: 1024px){
             width: 70px;
