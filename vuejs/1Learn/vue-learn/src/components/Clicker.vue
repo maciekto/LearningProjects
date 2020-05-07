@@ -22,7 +22,7 @@
             <button class="Btn Btn-10K">10k</button>
         </div>
         <div class="Grid Grid-100K">
-            <button class="Btn Btn-100K">100k</button>
+            <button class="Btn Btn-100K" disabled>100k</button>
         </div>
         <div class="Grid Grid-1Mln">
             <button class="Btn Btn-1Mln">1Mln</button>
