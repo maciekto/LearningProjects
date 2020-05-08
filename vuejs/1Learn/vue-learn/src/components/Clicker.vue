@@ -1,16 +1,17 @@
 <template>
     <div class="App-Clicker Clicker">
         <div class="Grid Grid-Counter">
-            {{ counter }}
+            {{ counterResult }}
         </div>
         <div class="Grid Grid-1Mld">
             <button class="Btn Btn-1Mld">1Mld</button>
         </div>
         <div class="Grid Grid-0">
-            <button class="Btn Btn-0" @click="Btn0">1</button>
+            <!-- eslint-disable max-len -->
+            <button class="Btn Btn-0" :class="btn0Style" @mouseover="btn0Meth" @click="btn0Meth">1</button>
         </div>
         <div class="Grid Grid-10">
-            <button class="Btn Btn-10">10</button>
+            <button class="Btn Btn-10" :class="btn1Style" :disabled="btn1.disabled">10</button>
         </div>
         <div class="Grid Grid-100">
             <button class="Btn Btn-100">100</button>
@@ -22,7 +23,7 @@
             <button class="Btn Btn-10K">10k</button>
         </div>
         <div class="Grid Grid-100K">
-            <button class="Btn Btn-100K" disabled>100k</button>
+            <button class="Btn Btn-100K" :disabled="true">100k</button>
         </div>
         <div class="Grid Grid-1Mln">
             <button class="Btn Btn-1Mln">1Mln</button>
@@ -38,13 +39,34 @@
 
 <script>
 export default {
+  name: 'Clicker',
   props: {
     counter: Number,
   },
-  name: 'Clicker',
+  data() {
+    return {
+      counterResult: 0,
+      btn0: {
+        points: 0,
+        disabled: false,
+      },
+      btn1: {
+        points: 0,
+        disabled: true,
+      },
+      btn0Style: 'Btn_enabled',
+      btn1Style: 'Btn_disabled',
+    };
+  },
   methods: {
-    Btn0() {
-      this.counter += 1;
+    btn0Meth() {
+      if (this.btn0.points >= 9) {
+        this.btn1.disabled = false;
+        this.btn1Style = 'Btn_enabled';
+      }
+      this.counterResult += 1;
+      // eslint-disable-next-line
+      return this.btn0.points += 1;
     },
   },
 };
@@ -126,11 +148,12 @@ export default {
         }
     }
     .Btn{
+        font-size: 1rem;
+        font-weight: 700;
         border-radius: 2px;
         border: 1px solid black;
         width: 40px;
         height: 40px;
-        background: white;
         box-shadow: 0px 0px 3px black;
         outline: none;
         @media (min-width: 450px) and (max-width: 767px){
@@ -159,6 +182,12 @@ export default {
                 width: 70px;
                 height: 70px;
             }
+        }
+        &_disabled{
+            background: rgb(255, 142, 142);
+        }
+        &_enabled{
+            background: green;
         }
     }
 </style>
