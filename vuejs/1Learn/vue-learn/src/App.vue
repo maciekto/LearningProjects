@@ -5,48 +5,49 @@
             {{ counter }}
         </div>
         <div class="Grid Grid-1Mld">
-            <button class="Btn Btn-1Mld" :disabled="button9">1Mld</button>
+            <button class="Btn Btn-1Mld" :disabled="buttons[9].button">1Mld</button>
         </div>
         <div class="Grid Grid-0">
             <!-- eslint-disable max-len -->
-            <button class="Btn Btn-0" @click="counter1()">1</button>
+            <button class="Btn Btn-0" @click="counter1(1), click = 'Btn-Animate_Add'" :disabled="buttons[0].button">1</button>
+            <div class="Btn-Animate" :class="click"></div>
         </div>
         <div class="Grid Grid-10">
-            <button class="Btn Btn-10" :disabled="button1">10</button>
+            <button class="Btn Btn-10" @click="counter1(10)" :disabled="buttons[1].button">10</button>
         </div>
         <div class="Grid Grid-100">
-            <button class="Btn Btn-100" :disabled="button2">100</button>
+            <button class="Btn Btn-100" @click="counter1(100)" :disabled="buttons[2].button">100</button>
         </div>
         <div class="Grid Grid-1K">
-            <button class="Btn Btn-1K" :disabled="button3">1k</button>
+            <button class="Btn Btn-1K" @click="counter1(500)" :disabled="buttons[3].button">1k</button>
         </div>
         <div class="Grid Grid-10K">
-            <button class="Btn Btn-10K" :disabled="button4">10k</button>
+            <button class="Btn Btn-10K" @click="counter1(1500)" :disabled="buttons[4].button">10k</button>
         </div>
         <div class="Grid Grid-100K">
-            <button class="Btn Btn-100K" :disabled="button5">100k</button>
+            <button class="Btn Btn-100K" @click="counter1(100000)" :disabled="buttons[5].button">100k</button>
         </div>
         <div class="Grid Grid-1Mln">
-            <button class="Btn Btn-1Mln" :disabled="button6">1Mln</button>
+            <button class="Btn Btn-1Mln" @click="counter1(1000000)" :disabled="buttons[6].button">1Mln</button>
         </div>
         <div class="Grid Grid-10Mln">
-            <button class="Btn Btn-10Mln" :disabled="button7">10Mln</button>
+            <button class="Btn Btn-10Mln" @click="counter1(10000000)" :disabled="buttons[7].button">10Mln</button>
         </div>
         <div class="Grid Grid-100Mln">
-            <button class="Btn Btn-100Mln" :disabled="button8">100Mln</button>
+            <button class="Btn Btn-100Mln" @click="counter1(100000000)" :disabled="buttons[8].button">100Mln</button>
         </div>
     </div>
     <div class="App-Bar">
-      <button class="Btn1 Btn-Add" :disabled="buttonAdd1" @click="autoCount()">BTN1 <br /> {{ buttonAddCount1 }}</button>
-      <button class="Btn2 Btn-Add" :disabled="buttonAdd2">BTN2</button>
-      <button class="Btn3 Btn-Add" :disabled="buttonAdd3">BTN3</button>
-      <button class="Btn4 Btn-Add" :disabled="buttonAdd4">BTN4</button>
-      <button class="Btn5 Btn-Add" :disabled="buttonAdd5">BTN5</button>
-      <button class="Btn6 Btn-Add" :disabled="buttonAdd6">BTN6</button>
-      <button class="Btn7 Btn-Add" :disabled="buttonAdd7">BTN7</button>
-      <button class="Btn8 Btn-Add" :disabled="buttonAdd8">BTN8</button>
-      <button class="Btn9 Btn-Add" :disabled="buttonAdd9">BTN9</button>
-      <button class="Btn10 Btn-Add">MORE</button>
+      <button class="Btn1 Btn-Add" :disabled="buttons[0].buttonAdd">MORE </button>
+      <button class="Btn2 Btn-Add" :disabled="buttons[1].buttonAdd" @click="autoCount()">BTN1 <br /> {{ buttonAddCount1 }}</button>
+      <button class="Btn3 Btn-Add" :disabled="buttons[2].buttonAdd">BTN2</button>
+      <button class="Btn4 Btn-Add" :disabled="buttons[3].buttonAdd">BTN3</button>
+      <button class="Btn5 Btn-Add" :disabled="buttons[4].buttonAdd">BTN4</button>
+      <button class="Btn6 Btn-Add" :disabled="buttons[5].buttonAdd">BTN5</button>
+      <button class="Btn7 Btn-Add" :disabled="buttons[6].buttonAdd">BTN6</button>
+      <button class="Btn8 Btn-Add" :disabled="buttons[7].buttonAdd">BTN7</button>
+      <button class="Btn9 Btn-Add" :disabled="buttons[8].buttonAdd">BTN8</button>
+      <button class="Btn10 Btn-Add" :disabled="buttons[9].buttonAdd">BTN9</button>
 
     </div>
   </div>
@@ -58,30 +59,55 @@ export default {
   data() {
     return {
       counter: 1,
-      button1: true,
-      button2: true,
-      button3: true,
-      button4: true,
-      button5: true,
-      button6: true,
-      button7: true,
-      button8: true,
-      button9: true,
-      buttonAdd1: true,
-      buttonAdd2: true,
-      buttonAdd3: true,
-      buttonAdd4: true,
-      buttonAdd5: true,
-      buttonAdd6: true,
-      buttonAdd7: true,
-      buttonAdd8: true,
-      buttonAdd9: true,
+      click: 'Btn-Animate_Add1',
+      buttons: [
+        { // 0
+          button: false,
+          buttonAdd: true,
+        },
+        { // 1
+          button: true,
+          buttonAdd: true,
+        },
+        { // 2
+          button: true,
+          buttonAdd: true,
+        },
+        { // 3
+          button: true,
+          buttonAdd: true,
+        },
+        { // 4
+          button: true,
+          buttonAdd: true,
+        },
+        { // 5
+          button: true,
+          buttonAdd: true,
+        },
+        { // 6
+          button: true,
+          buttonAdd: true,
+        },
+        { // 7
+          button: true,
+          buttonAdd: true,
+        },
+        { // 8
+          button: true,
+          buttonAdd: true,
+        },
+        { // 9
+          button: true,
+          buttonAdd: true,
+        },
+      ],
       buttonAddCount1: 0,
     };
   },
   methods: {
-    counter1() {
-      this.counter += 1;
+    counter1(x) {
+      this.counter += x;
       return this.counter;
     },
     autoCount() {
@@ -95,12 +121,25 @@ export default {
   },
   watch: {
     counter() {
-      if (this.counter >= 10) {
-        this.button1 = false;
-      } else {
-        this.button1 = true;
+      if (this.counter >= 10 && this.counter < 100) {
+        this.buttons[1].button = false;
+      } else if (this.counter >= 100 && this.counter < 1000) {
+        this.buttons[2].button = false;
+      } else if (this.counter >= 1000 && this.counter < 10000) {
+        this.buttons[3].button = false;
+      } else if (this.counter >= 10000 && this.counter < 100000) {
+        this.buttons[4].button = false;
+      } else if (this.counter >= 100000 && this.counter < 1000000) {
+        this.buttons[5].button = false;
+      } else if (this.counter >= 1000000 && this.counter < 10000000) {
+        this.buttons[6].button = false;
+      } else if (this.counter >= 10000000 && this.counter < 100000000) {
+        this.buttons[7].button = false;
+      } else if (this.counter >= 100000000 && this.counter < 1000000000) {
+        this.buttons[8].button = false;
       }
-      if (this.counter >= 5) {
+      // auto buttons
+      if (this.counter >= 100) {
         this.buttonAdd1 = false;
       } else {
         this.buttonAdd1 = true;
@@ -128,6 +167,7 @@ export default {
     flex-direction: column;
   }
   .Btn-Add{
+    font-size: 1.5rem;
     padding: 0;
     margin: 0;
     outline: none;
@@ -180,6 +220,7 @@ export default {
         ;
     }
     .Grid {
+        position: relative;
         border: 0px solid black;
         width: 100%;
         height: 100%;
@@ -229,6 +270,8 @@ export default {
         }
     }
     .Btn{
+        z-index: 2;
+        position: relative;
         font-size: 1rem;
         font-weight: 700;
         border-radius: 2px;
@@ -246,7 +289,10 @@ export default {
             height: 70px;
         }
         &:active{
-            background: yellow;
+            //background: yellow;
+        }
+        &:focus{
+          background: yellow;
         }
         &-1Mld{
             width: 100%;
@@ -264,6 +310,55 @@ export default {
                 height: 70px;
             }
         }
+        &-Animate{
+          z-index: 1;
+          box-sizing: border-box;
+          box-shadow: 0px 0px 10px black,
+          0px 0px 50px inset yellow;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          position: absolute;
+          width: 0px;
+          height: 0px;
+          border: 0px solid black;
+          &_Add{
+            animation: clickCount 1s ease-in-out infinite;
+          }
+        }
     }
+    @keyframes clickCount {
+      0%{
+        border: 0px solid black;
+        width: 0px;
+        height: 0px;
+        transform: translateX(0px) translateY(0px);
+        opacity: 1;
+      }70%{
+        border: 2px solid black;
+        transform: translateX(-100px) translateY(-100px);
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+      }100%{
+        border: 1px solid black;
+        transform: translateX(-75px) translateY(-75px);
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes autoCount {
+          from{
+            border-radius: 0%;
+            box-shadow: 0px 0px 3px black;
+            transform: rotate(0deg);
+          }to{
+            border-radius: 50%;
+            box-shadow: 0px 0px 50px black;
+            transform: rotate(360deg);
+          }
+        }
 
 </style>
