@@ -6,35 +6,44 @@
         </div>
         <div class="Grid Grid-1Mld">
             <button class="Btn Btn-1Mld" :disabled="buttons[9].button">1Mld</button>
+            <div class="Btn-Unlock" :style="buttons[9].display" @click="firstClick(9)"></div>
         </div>
         <div class="Grid Grid-0">
             <!-- eslint-disable max-len -->
-            <button class="Btn Btn-0" @click="counter1(1), click = 'Btn-Animate_Add'" :disabled="buttons[0].button">1</button>
+            <button class="Btn Btn-0" @click="counter1(1)" :disabled="buttons[0].button">1</button>
             <div class="Btn-Animate" :class="click"></div>
         </div>
         <div class="Grid Grid-10">
-            <button class="Btn Btn-10" @click="counter1(10)" :disabled="buttons[1].button">10</button>
+            <button class="Btn Btn-10" @click="counter1(2)" :disabled="buttons[1].button">10</button>
+            <div class="Btn-Unlock" :style="buttons[1].display" @click="firstClick(1)"></div>
         </div>
         <div class="Grid Grid-100">
-            <button class="Btn Btn-100" @click="counter1(100)" :disabled="buttons[2].button">100</button>
+            <button class="Btn Btn-100" @click="counter1(7)" :disabled="buttons[2].button">100</button>
+            <div class="Btn-Unlock" :style="buttons[2].display" @click="firstClick(2)"></div>
         </div>
         <div class="Grid Grid-1K">
             <button class="Btn Btn-1K" @click="counter1(500)" :disabled="buttons[3].button">1k</button>
+            <div class="Btn-Unlock" :style="buttons[3].display" @click="firstClick(3)"></div>
         </div>
         <div class="Grid Grid-10K">
             <button class="Btn Btn-10K" @click="counter1(1500)" :disabled="buttons[4].button">10k</button>
+            <div class="Btn-Unlock" :style="buttons[4].display" @click="firstClick(4)"></div>
         </div>
         <div class="Grid Grid-100K">
             <button class="Btn Btn-100K" @click="counter1(100000)" :disabled="buttons[5].button">100k</button>
+            <div class="Btn-Unlock" :style="buttons[5].display" @click="firstClick(5)"></div>
         </div>
         <div class="Grid Grid-1Mln">
             <button class="Btn Btn-1Mln" @click="counter1(1000000)" :disabled="buttons[6].button">1Mln</button>
+            <div class="Btn-Unlock" :style="buttons[6].display" @click="firstClick(6)"></div>
         </div>
         <div class="Grid Grid-10Mln">
             <button class="Btn Btn-10Mln" @click="counter1(10000000)" :disabled="buttons[7].button">10Mln</button>
+            <div class="Btn-Unlock" :style="buttons[7].display" @click="firstClick(7)"></div>
         </div>
         <div class="Grid Grid-100Mln">
             <button class="Btn Btn-100Mln" @click="counter1(100000000)" :disabled="buttons[8].button">100Mln</button>
+            <div class="Btn-Unlock" :style="buttons[8].display" @click="firstClick(8)"></div>
         </div>
     </div>
     <div class="App-Bar">
@@ -64,52 +73,83 @@ export default {
         { // 0
           button: false,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 1
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 2
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 3
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 4
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 5
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 6
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 7
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 8
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
         { // 9
           button: true,
           buttonAdd: true,
+          firstClick: false,
+          display: 'display: block',
         },
       ],
       buttonAddCount1: 0,
     };
   },
   methods: {
+    // unlocking buttons
+    firstClick(x) {
+      if (this.buttons[x].firstClick === false && this.counter >= 10 ** x) {
+        this.buttons[x].firstClick = true;
+        this.buttons[x].display = 'display: none';
+        this.counter -= 10 ** x;
+      }
+      return this.counter;
+    },
+    // click count
     counter1(x) {
       this.counter += x;
       return this.counter;
     },
+    // auto count
     autoCount() {
       setInterval(() => {
         this.counter += 1;
@@ -117,6 +157,13 @@ export default {
       }, 1000);
       this.buttonAddCount1 += 1;
       return this.buttonAddCount1;
+    },
+    // animations
+    animationClick() {
+      this.click = 'Btn-Animate_Add';
+      setTimeout(() => {
+        this.click = 'back';
+      }, 200);
     },
   },
   watch: {
@@ -137,14 +184,15 @@ export default {
         this.buttons[7].button = false;
       } else if (this.counter >= 100000000 && this.counter < 1000000000) {
         this.buttons[8].button = false;
+      } else if (this.counter >= 100000000 && this.counter < 10000000000) {
+        this.buttons[9].button = false;
       }
       // auto buttons
       if (this.counter >= 100) {
-        this.buttonAdd1 = false;
+        this.buttons[1].buttonAdd = false;
       } else {
         this.buttonAdd1 = true;
       }
-      return (this.button1, this.buttonAdd1);
     },
   },
 };
@@ -206,7 +254,7 @@ export default {
         grid-template-columns: repeat(14, 1fr);
         grid-template-rows: repeat(11, 1fr);
         grid-template-areas:
-        ". Coun Coun . . . . . . . . . . ."
+        ". . . . . .  Coun Coun . . . . . ."
         ". . . . Mld1 Mld1 Mld1 Mld1 Mld1 Mld1 . . . ."
         ". . . . Mld1 Mld1 Mld1 Mld1 Mld1 Mld1 . . . ."
         ". . . . . . . . . . . . . ."
@@ -270,7 +318,7 @@ export default {
         }
     }
     .Btn{
-        z-index: 2;
+        z-index: 1;
         position: relative;
         font-size: 1rem;
         font-weight: 700;
@@ -289,10 +337,25 @@ export default {
             height: 70px;
         }
         &:active{
-            //background: yellow;
+            background: yellow;
         }
         &:focus{
-          background: yellow;
+          //background: yellow;
+        }
+        &-Unlock{
+          position: absolute;
+          z-index: 2;
+          width: 40px;
+          height: 40px;
+          background: rgba($color: #cc77aa, $alpha: 0.2);
+          @media (min-width: 450px) and (max-width: 767px){
+            width: 62px;
+            height: 62px;
+          }
+          @media (min-width: 768px) and (max-width: 1024px){
+              width: 70px;
+              height: 70px;
+          }
         }
         &-1Mld{
             width: 100%;
@@ -323,28 +386,28 @@ export default {
           height: 0px;
           border: 0px solid black;
           &_Add{
-            animation: clickCount 1s ease-in-out infinite;
+            animation: clickCount 0.2s ease-in-out 1;
           }
         }
     }
     @keyframes clickCount {
       0%{
         border: 0px solid black;
-        width: 0px;
-        height: 0px;
-        transform: translateX(0px) translateY(0px);
+        width: 50px;
+        height: 50px;
+        transform: translateX(-25px) translateY(-25px);
         opacity: 1;
       }70%{
         border: 2px solid black;
-        transform: translateX(-100px) translateY(-100px);
-        width: 200px;
-        height: 200px;
+        transform: translateX(-50px) translateY(-50px);
+        width: 100px;
+        height: 100px;
         opacity: 1;
       }100%{
         border: 1px solid black;
-        transform: translateX(-75px) translateY(-75px);
-        width: 150px;
-        height: 150px;
+        transform: translateX(-50px) translateY(-50px);
+        width: 100px;
+        height: 100px;
         opacity: 0;
       }
     }
