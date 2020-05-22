@@ -15,19 +15,19 @@
             <div class="Btn-Animate" :class="click"></div>
         </div>
         <div class="Grid Grid-10">
-            <button class="Btn Btn-10" @click="counter1(99)" :disabled="buttons[1].button">10</button>
+            <button class="Btn Btn-10" @click="counter1(10)" :disabled="buttons[1].button">10</button>
             <div class="Btn-Unlock" :style="buttons[1].display" @click="firstClick(1)"></div>
         </div>
         <div class="Grid Grid-100">
-            <button class="Btn Btn-100" @click="counter1(999)" :disabled="buttons[2].button">100</button>
+            <button class="Btn Btn-100" @click="counter1(100)" :disabled="buttons[2].button">100</button>
             <div class="Btn-Unlock" :style="buttons[2].display" @click="firstClick(2)"></div>
         </div>
         <div class="Grid Grid-1K">
-            <button class="Btn Btn-1K" @click="counter1(500)" :disabled="buttons[3].button">1k</button>
+            <button class="Btn Btn-1K" @click="counter1(1000)" :disabled="buttons[3].button">1k</button>
             <div class="Btn-Unlock" :style="buttons[3].display" @click="firstClick(3)"></div>
         </div>
         <div class="Grid Grid-10K">
-            <button class="Btn Btn-10K" @click="counter1(99999)" :disabled="buttons[4].button">10k</button>
+            <button class="Btn Btn-10K" @click="counter1(10000)" :disabled="buttons[4].button">10k</button>
             <div class="Btn-Unlock" :style="buttons[4].display" @click="firstClick(4)"></div>
         </div>
         <div class="Grid Grid-100K">
@@ -54,39 +54,39 @@
         <div class="Btn-Add_Unlock" style="display: none"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn2 Btn-Inner" :disabled="buttons[1].buttonAdd" @click="allowAutoCount(1, 20)">BTN1 <br /> {{ buttons[1].buttonAddCount }} <br /> {{ this.buttons[1].buttonAddCost }}</button>
+        <button class="Btn2 Btn-Inner" :disabled="buttons[1].buttonAdd" @click="allowAutoCount(1, 10)">BTN1 <br /> {{ buttons[1].buttonAddCount }} <br /> {{ this.buttons[1].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[1].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn3 Btn-Inner" :disabled="buttons[2].buttonAdd">BTN2</button>
+        <button class="Btn3 Btn-Inner" :disabled="buttons[2].buttonAdd" @click="allowAutoCount(2, 100)">BTN2 <br /> {{ buttons[2].buttonAddCount }} <br /> {{ this.buttons[2].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[2].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn4 Btn-Inner" :disabled="buttons[3].buttonAdd">BTN3</button>
+        <button class="Btn4 Btn-Inner" :disabled="buttons[3].buttonAdd" @click="allowAutoCount(3, 1000)">BTN3 <br /> {{ buttons[3].buttonAddCount }} <br /> {{ this.buttons[3].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[3].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn5 Btn-Inner" :disabled="buttons[4].buttonAdd">BTN4</button>
+        <button class="Btn5 Btn-Inner" :disabled="buttons[4].buttonAdd" @click="allowAutoCount(4, 10000)">BTN4 <br /> {{ buttons[4].buttonAddCount }} <br /> {{ this.buttons[4].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[4].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn6 Btn-Inner" :disabled="buttons[5].buttonAdd">BTN5</button>
+        <button class="Btn6 Btn-Inner" :disabled="buttons[5].buttonAdd" @click="allowAutoCount(5, 100000)">BTN5 <br /> {{ buttons[5].buttonAddCount }} <br /> {{ this.buttons[5].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[5].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn7 Btn-Inner" :disabled="buttons[6].buttonAdd">BTN6</button>
+        <button class="Btn7 Btn-Inner" :disabled="buttons[6].buttonAdd" @click="allowAutoCount(6, 1000000)">BTN6 <br /> {{ buttons[6].buttonAddCount }} <br /> {{ this.buttons[6].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[6].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn8 Btn-Inner" :disabled="buttons[7].buttonAdd">BTN7</button>
+        <button class="Btn8 Btn-Inner" :disabled="buttons[7].buttonAdd" @click="allowAutoCount(7, 10000000)">BTN7 <br /> {{ buttons[7].buttonAddCount }} <br /> {{ this.buttons[7].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[7].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn9 Btn-Inner" :disabled="buttons[8].buttonAdd">BTN8</button>
+        <button class="Btn9 Btn-Inner" :disabled="buttons[8].buttonAdd" @click="allowAutoCount(8, 100000000)">BTN8 <br /> {{ buttons[8].buttonAddCount }} <br /> {{ this.buttons[8].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[8].display"></div>
       </div>
       <div class="Btn-Add">
-        <button class="Btn10 Btn-Inner" :disabled="buttons[9].buttonAdd">BTN9</button>
+        <button class="Btn10 Btn-Inner" :disabled="buttons[9].buttonAdd" @click="allowAutoCount(9, 100000000)">BTN9 <br /> {{ buttons[9].buttonAddCount }} <br /> {{ this.buttons[9].buttonAddCost }}</button>
         <div class="Btn-Add_Unlock" :style="buttons[9].display"></div>
       </div>
     </div>
@@ -111,56 +111,80 @@ export default {
           button: true,
           buttonAdd: true,
           buttonAddCost: 10,
-          costMultiple: 1,
-          buttonAddCount: 0,
+          costMultiple: 0,
+          buttonAddCount: 1,
           firstClick: false,
           display: 'display: block',
         },
         { // 2
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 3
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 4
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 5
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 6
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 7
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 8
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
         { // 9
           button: true,
           buttonAdd: true,
+          buttonAddCost: 10,
+          costMultiple: 1,
+          buttonAddCount: 0,
           firstClick: false,
           display: 'display: block',
         },
@@ -183,9 +207,9 @@ export default {
       return this.counter;
     },
     // allow auto count
-    allowAutoCount(x) {
+    allowAutoCount(x, y) {
       if (this.counter >= this.buttons[x].buttonAddCost) {
-        this.autoCount(10, x);
+        this.autoCount(y, x);
         this.counter -= this.buttons[x].buttonAddCost;
         // eslint-disable-next-line max-len
         this.buttons[x].buttonAddCost += this.buttons[x].buttonAddCost * this.buttons[x].costMultiple;
@@ -195,9 +219,9 @@ export default {
     // auto count
     autoCount(x, y) {
       setInterval(() => {
-        this.counter += x;
+        this.counter += x / 10;
         return this.counter;
-      }, 1000, x);
+      }, 100, x);
       this.buttons[y].buttonAddCount += 1;
       return this.buttons[y].buttonAddCount;
     },
