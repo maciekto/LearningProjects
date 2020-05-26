@@ -8,7 +8,6 @@
 
 <script>
 export default {
-  el: '#example',
   name: 'MainValues',
   data() {
     return {
