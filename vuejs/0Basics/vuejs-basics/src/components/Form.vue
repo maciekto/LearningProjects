@@ -1,6 +1,6 @@
 <template>
     <div class="Form">
-        <input type="text" class="Form-Input" placeholder="check golden hour in other cities">
+        <input type="text" class="Form-Input" placeholder="check golden hour in other places">
     </div>
 </template>
 
