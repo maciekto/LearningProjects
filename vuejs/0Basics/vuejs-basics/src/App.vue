@@ -3,7 +3,7 @@
     <div class="app-Inner">
       <Home />
       <!-- <MainValues /> -->
-      <div class="mainValues">Your opportunity to take pictures</div>
+      <div class="mainValues"></div>
       <Form />
       <!-- eslint-disable-next-line -->
       <button class="btn-location" @click="getLocation">click to see when sunrise and sunset are</button>
@@ -31,6 +31,10 @@ export default {
       height: 0,
     };
   },
+  // eslint-disable-next-line
+  mounted:function() {
+    this.getLocation1();
+  },
   methods: {
     getLocation() {
       const geo = navigator.geolocation;
@@ -45,19 +49,49 @@ export default {
         const loc = document.querySelector('.location');
         const btnLoc = document.querySelector('.btn-location');
         btnLoc.classList.add('btn-location_out');
-        setTimeout(() => {
-          axios.get(`https://api.sunrise-sunset.org/json?lat=${location.coords.latitude}&lng=${location.coords.longitude}`)
-            .then((response) => {
-              loc.classList.add('location_animate');
-              btnLoc.innerHTML = '';
-              loc.innerHTML = `Sunrise: ${response.data.results.sunrise} Sunset: ${response.data.results.sunset}`;
+        axios.get(`https://api.sunrise-sunset.org/json?lat=${location.coords.latitude}&lng=${location.coords.longitude}`)
+          .then((response) => {
+            // whole logic
+            loc.classList.add('location_animate');
+            btnLoc.innerHTML = '';
+            loc.innerHTML = `Sunrise: ${response.data.results.sunrise} Sunset: ${response.data.results.sunset}`;
+          // console.log(response.data.results.sunrise);
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+        console.log(error);
+          });
+      }
+    },
+    // eslint-disable-next-line
+    getLocation1:function() {
+      const geo = navigator.geolocation;
+      if (geo) {
+        // eslint-disable-next-line
+          geo.getCurrentPosition(showLocation);
+      } else {
+        const divLocation2 = document.querySelector('.location');
+        divLocation2.innerHTML = 'CHUJ';
+      }
+      function showLocation(location) {
+        const mainValues = document.querySelector('.mainValues');
+        let sunset = '';
+        let sunrise = '';
+        axios.get(`https://api.sunrise-sunset.org/json?lat=${location.coords.latitude}&lng=${location.coords.longitude}`)
+          .then((response) => {
+            mainValues.innerHTML = `Sunrise: ${response.data.results.sunrise} Sunset: ${response.data.results.sunset}`;
+            sunset = response.data.results.sunrise;
+            sunrise = response.data.results.sunset;
+            const resultSunrise = sunrise.slice(0, 1);
+            const resultSunset = sunset.slice(0, 1);
+            console.log(resultSunrise);
+            console.log(resultSunset);
             // console.log(response.data.results.sunrise);
-            })
-            .catch((error) => {
-              // eslint-disable-next-line
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
           console.log(error);
-            });
-        }, 500);
+          });
       }
     },
   },
@@ -97,7 +131,7 @@ export default {
   .mainValues{
     @include centerItems();
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: center;
     width: 100vw;
     height: 10vh;
@@ -116,7 +150,7 @@ export default {
     }
     &_out{
       opacity: 0;
-      animation: out 0.5s alternate 1;
+      animation: out 0.2s alternate 1;
     }
   }
   .location{
