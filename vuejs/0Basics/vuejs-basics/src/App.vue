@@ -33,7 +33,7 @@ export default {
   },
   // eslint-disable-next-line
   mounted:function() {
-    this.getLocation1();
+    this.goldenHours();
   },
   methods: {
     getLocation() {
@@ -64,7 +64,7 @@ export default {
       }
     },
     // eslint-disable-next-line
-    getLocation1:function() {
+    goldenHours:function() {
       const geo = navigator.geolocation;
       if (geo) {
         // eslint-disable-next-line
@@ -74,18 +74,42 @@ export default {
         divLocation2.innerHTML = 'CHUJ';
       }
       function showLocation(location) {
-        const mainValues = document.querySelector('.mainValues');
-        let sunset = '';
+        const mainValues = document.querySelector('.mainValues');// eslint-disable-next-line
+        let sunset = '';// eslint-disable-next-line
         let sunrise = '';
         axios.get(`https://api.sunrise-sunset.org/json?lat=${location.coords.latitude}&lng=${location.coords.longitude}`)
           .then((response) => {
-            mainValues.innerHTML = `Sunrise: ${response.data.results.sunrise} Sunset: ${response.data.results.sunset}`;
-            sunset = response.data.results.sunrise;
-            sunrise = response.data.results.sunset;
-            const resultSunrise = sunrise.slice(0, 1);
-            const resultSunset = sunset.slice(0, 1);
-            console.log(resultSunrise);
-            console.log(resultSunset);
+            function morningGoldenHour(response1, response2) {
+              let splitedM = null;
+              let splitedE = null;
+              let splitedSecondM = null;
+              let splitedSecondE = null;
+              let hourM = null;
+              let hourE = null;
+              let hourMto = null;
+              let hourEto = null;
+              let minutesM = null;
+              let minutesE = null;
+              // let dayM = null;
+              // let dayE = null;
+              // split to hours minutes seconds(width AM or PM)
+              splitedM = response1.split(':');
+              splitedE = response2.split(':');
+              // split to seconds and AM or PM
+              splitedSecondM = splitedM[2].split(' ');
+              splitedSecondE = splitedE[2].split(' ');
+              // parse to numbers
+              hourM = parseInt(splitedM[0], 10);
+              hourE = parseInt(splitedE[0], 10);
+              minutesM = parseInt(splitedM[1], 10);
+              minutesE = parseInt(splitedE[1], 10);
+              hourMto = hourM + 1;
+              hourEto = hourE - 1;
+              mainValues.innerHTML = `Morning: ${hourM}:${minutesM} ${splitedSecondM[1]} - ${hourMto}:${minutesM} ${splitedSecondM[1]} <br />
+              Evening: ${hourEto}:${minutesE} ${splitedSecondE[1]} - ${hourE}:${minutesM} ${splitedSecondE[1]}`;
+            }
+            morningGoldenHour(response.data.results.sunrise, response.data.results.sunset);
+
             // console.log(response.data.results.sunrise);
           })
           .catch((error) => {
