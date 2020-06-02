@@ -56,6 +56,9 @@ export default {
             // whole logic
             loc.classList.add('location_animate');
             btnLoc.innerHTML = '';
+            // const date = new Date();
+            // let dateFinish = date.getTimezoneOffset();
+            // dateFinish = (dateFinish * -1) / 60;
             loc.innerHTML = `Sunrise: ${response.data.results.sunrise} Sunset: ${response.data.results.sunset}`;
           // console.log(response.data.results.sunrise);
           })
@@ -108,8 +111,16 @@ export default {
                 minutesE = parseInt(splitedE[1], 10);
                 hourMto = hourM + 1;
                 hourEto = hourE - 1;
+                // date timezone validation
+                const date = new Date();
+                let dateFinish = date.getTimezoneOffset();
+                dateFinish = (dateFinish * -1) / 60;
+                hourM += dateFinish;
+                hourE += dateFinish;
+                hourMto += dateFinish;
+                hourEto += dateFinish;
                 mainValues.innerHTML = `Morning: ${hourM}:${minutesM} ${splitedSecondM[1]} - ${hourMto}:${minutesM} ${splitedSecondM[1]} <br />
-                Evening: ${hourEto}:${minutesE} ${splitedSecondE[1]} - ${hourE}:${minutesM} ${splitedSecondE[1]}`;
+                Evening: ${hourEto}:${minutesE} ${splitedSecondE[1]} - ${hourE}:${minutesE} ${splitedSecondE[1]}`;
               }
               morningGoldenHour(response.data.results.sunrise, response.data.results.sunset);
 
