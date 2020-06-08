@@ -1,0 +1,14 @@
+{
+    "cities": [
+        {
+            "name": "Shanghai",
+            "lat": 31.23,
+            "long": 121.47
+        },
+        {
+            "name": "Bombay", 
+            "lat": 18.96,
+            "long": 72.82
+        }
+    ]
+}

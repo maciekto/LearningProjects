@@ -4,11 +4,18 @@
       <Home />
       <!-- <MainValues /> -->
       <div class="mainValues"></div>
-      <Form />
+      <div class="Form">
+        <!-- eslint-disable-next-line -->
+        <input type="text" class="Form-Input" v-model="cityPick" placeholder="check golden hour in other places">
+      </div>
+      <div>
+
+      </div>
       <!-- eslint-disable-next-line -->
-      <button class="btn-location" @click="getLocation">click to see when sunrise and sunset are</button>
-      <div class="location"></div>
-      <div class="location2"></div>
+      <!-- <button class="btn-location" @click="getLocation">click to see when sunrise and sunset are</button>
+      <div class="location"></div> -->
+      <div class="results">
+    </div>
     </div>
     <div class="map"></div>
   </div>
@@ -17,23 +24,26 @@
 <script>
 import axios from 'axios';
 import Home from './components/Home.vue';
-import Form from './components/Form.vue';
+import cities from './assets/cities.json';
 
 export default {
   name: 'App',
   components: {
     Home,
-    Form,
   },
   data() {
     return {
+      myCityDB: cities,
+      newMyCityDB: [],
       width: 0,
       height: 0,
+      cityPick: '',
     };
   },
   // eslint-disable-next-line
   mounted:function() {
     this.goldenHours();
+    this.cityConfirm();
   },
   methods: {
     getLocation() {
@@ -47,9 +57,7 @@ export default {
       }
       function showLocation(location) {
         const loc = document.querySelector('.location');
-        const lo2c = document.querySelector('.location2');
         const btnLoc = document.querySelector('.btn-location');
-        lo2c.innerHTML = `${location.coords.latitude}, ${location.coords.longitude}`;
         btnLoc.classList.add('btn-location_out');
         axios.get(`https://api.sunrise-sunset.org/json?lat=${location.coords.latitude}&lng=${location.coords.longitude}`)
           .then((response) => {
@@ -131,6 +139,38 @@ export default {
             console.log(error);
             });
         }, 500);
+      }
+    },
+    cityConfirm() {
+      this.newMyCityDB = this.myCityDB.cities;
+      // console.log(this.newMyCityDB);
+    },
+  },
+  watch: {
+    cityPick() {
+      const div = document.querySelector('.results');
+      let child = div.lastElementChild;
+      while (child) {
+        div.removeChild(child);
+        child = div.lastElementChild;
+      }
+      if (this.cityPick === '') {
+        while (child) {
+          div.removeChild(child);
+          child = div.lastElementChild;
+        }
+      } else {
+        this.myCityDB.cities.forEach((element) => {
+          // console.log(element.name);
+          const word = element.name.toUpperCase();
+          const exists = word.includes(this.cityPick.toUpperCase());
+          if (exists === true) {
+            // console.log(element.name);
+            const divResult = document.createElement('div');
+            divResult.innerHTML = element.name;
+            div.appendChild(divResult);
+          }
+        });
       }
     },
   },
@@ -217,6 +257,27 @@ export default {
       }
     }
   }
+  .Form{
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-Input{
+            width: 175px;
+            padding: 5px;
+            font-size: 10px;
+            color: rgba($color: #fff, $alpha: .42);
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            text-align: center;
+            outline: none;
+        }
+    }
+    ::placeholder {
+        color: rgba($color: #fff, $alpha: .42);
+    }
   @keyframes out {
     from{
       opacity: 1;
