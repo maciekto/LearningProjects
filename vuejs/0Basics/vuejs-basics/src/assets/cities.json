@@ -9,6 +9,31 @@
             "name": "Bombay", 
             "lat": 18.96,
             "long": 72.82
+        },
+        {
+            "name": "Karachi", 
+            "lat": 24.86,
+            "long": 67.01
+        },
+        {
+            "name": "Buenos Aires", 
+            "lat": -34.61,
+            "long": -58.37
+        },
+        {
+            "name": "Delhi", 
+            "lat": 28.67,
+            "long": 77.21
+        },
+        {
+            "name": "Istanbul", 
+            "lat": 41.1,
+            "long": 29
+        },
+        {
+            "name": "Manila", 
+            "lat": 14.62,
+            "long": 120.97
         }
     ]
 }
