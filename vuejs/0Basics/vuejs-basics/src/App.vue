@@ -148,37 +148,34 @@ export default {
   },
   watch: {
     cityPick() {
-      const form = document.querySelector('.Form');
       const div = document.querySelector('.Form-Results');
-      // const home = document.querySelector('.home');
       const mainValues = document.querySelector('.mainValues');
       const appAfter = document.querySelector('.app-after');
+      const appInner = document.querySelector('.app-Inner');
       let child = div.lastElementChild;
       while (child) {
         div.removeChild(child);
         child = div.lastElementChild;
       }
       if (this.cityPick === '') {
-        mainValues.style.cssText = 'display: flex; opacity: 0; height: 0px';
-        appAfter.style.cssText = 'opacity: 0;';
         setTimeout(() => {
-          // home.style.cssText = 'display: none';
-          mainValues.style.cssText = 'opacity: 1; height: 10vh;';
-        }, 400);
-        while (child) {
-          div.removeChild(child);
-          child = div.lastElementChild;
-        }
+          appInner.style.cssText = 'justify-content: center;';
+          mainValues.style.cssText = 'display: flex';
+          appAfter.style.cssText = 'opacity: 0;';
+          while (child) {
+            div.removeChild(child);
+            child = div.lastElementChild;
+          }
+        }, 10);
       } else {
-        div.style.cssText = 'min-height: 70vh';
-        form.style.cssText = 'min-height: 80vh';
+        appInner.style.cssText = 'height: 100vh;';
         // home.style.cssText = 'opacity: 0';
-        mainValues.style.cssText = 'opacity: 0;';
+        mainValues.style.cssText = 'opacity: 0; height: 0px; margin-bottom: 0px;';
         appAfter.style.cssText = 'opacity: 0.7;';
         setTimeout(() => {
           // home.style.cssText = 'display: none';
-          mainValues.style.cssText = 'display: none; opacity: 0;';
-        }, 400);
+          mainValues.style.cssText = 'display: none; opacity: 0; height: 0px;';
+        }, 200);
         this.myCityDB.cities.forEach((element) => {
           // console.log(element.name);
           const word = element.name.toUpperCase();
@@ -224,10 +221,13 @@ export default {
     justify-content: center;
     align-items: center;
     &-Inner{
+      transition: 0.4s;
       z-index: 2;
       width: 100%;
-      height: 60vh;
-      @include centerItems();
+      height: calc(50vh + calc(20vw - 12px));
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       flex-direction: column;
     }
     &-after{
@@ -244,14 +244,20 @@ export default {
     }
   }
   .mainValues{
-    transition: 1s;
+    transition: 0.2s;
     opacity: 1;
     @include centerItems();
     color: white;
     font-size: 1rem;
     text-align: center;
+    margin-bottom: 10vh;
     width: 100vw;
     height: 10vh;
+    &_Result {
+      height: 0px;
+      display: none;
+      opacity: 0;
+    }
   }
   .btn-location {
     width: auto;
@@ -296,7 +302,7 @@ export default {
     }
   }
   .Form{
-        transition: 1s;
+        transition: 0.4s;
         width: 100%;
         min-height: 20vh;
         height: auto;
@@ -317,8 +323,10 @@ export default {
             outline: none;
         }
         &-Results{
+          opacity: 1;
           transition: 1s;
           height: 0px;
+          min-height: calc(20vw - 12px);
         }
         &-InputField{
           height: 10vh;
