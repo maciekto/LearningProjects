@@ -1,0 +1,3 @@
+Shanghai	121.47	31.23
+Bombay	72.82	18.96
+Karachi	67.01	24.86

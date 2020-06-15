@@ -145,9 +145,75 @@ export default {
       this.newMyCityDB = this.myCityDB.cities;
       // console.log(this.newMyCityDB);
     },
+    coordsResult(lat, long, divFunc, name, gmt) {
+      setTimeout(() => {
+        axios.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
+          .then((response) => {
+            function morningGoldenHour(response1, response2) {
+              let splitedM = null;
+              let splitedE = null;
+              let splitedSecondM = null;
+              let splitedSecondE = null;
+              let hourM = null;
+              let hourE = null;
+              let hourMto = null;
+              let hourEto = null;
+              let minutesM = null;
+              let minutesE = null;
+              // let dayM = null;
+              // let dayE = null;
+              // split to hours minutes seconds(width AM or PM)
+              splitedM = response1.split(':');
+              splitedE = response2.split(':');
+              // split to seconds and AM or PM
+              splitedSecondM = splitedM[2].split(' ');
+              splitedSecondE = splitedE[2].split(' ');
+              // parse to numbers
+              hourM = parseInt(splitedM[0], 10);
+              hourE = parseInt(splitedE[0], 10);
+              minutesM = parseInt(splitedM[1], 10);
+              minutesE = parseInt(splitedE[1], 10);
+              hourMto = hourM + 1;
+              hourEto = hourE - 1;
+              // date timezone validation
+              hourM += gmt;
+              hourE += gmt;
+              hourMto += gmt;
+              hourEto += gmt;
+              if (hourM > 12) {
+                hourM -= 12;
+                splitedSecondM[1] = 'AM';
+              }
+              if (hourMto > 12) {
+                hourMto -= 12;
+                splitedSecondM[1] = 'AM';
+              }
+              if (hourE > 12) {
+                hourE -= 12;
+                splitedSecondE[1] = 'PM';
+              }
+              if (hourEto > 12) {
+                hourEto -= 12;
+                splitedSecondE[1] = 'PM';
+              }
+              // eslint-disable-next-line
+              divFunc.innerHTML = `${name} <br /> ${hourM}:${minutesM} ${splitedSecondM[1]} - ${hourMto}:${minutesM} ${splitedSecondM[1]} <br />
+                ${hourEto}:${minutesE} ${splitedSecondE[1]} - ${hourE}:${minutesE} ${splitedSecondE[1]}`;
+            }
+            morningGoldenHour(response.data.results.sunrise, response.data.results.sunset);
+
+            // console.log(response.data.results.sunrise);
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.log(error);
+          });
+      }, 500);
+    },
   },
   watch: {
-    cityPick() {
+    // eslint-disable-next-line
+    cityPick:function () {
       const div = document.querySelector('.Form-Results');
       const mainValues = document.querySelector('.mainValues');
       const appAfter = document.querySelector('.app-after');
@@ -175,17 +241,20 @@ export default {
         setTimeout(() => {
           // home.style.cssText = 'display: none';
           mainValues.style.cssText = 'display: none; opacity: 0; height: 0px;';
-        }, 200);
+        }, 300);
         this.myCityDB.cities.forEach((element) => {
           // console.log(element.name);
           const word = element.name.toUpperCase();
           const exists = word.includes(this.cityPick.toUpperCase());
           if (exists === true) {
             // console.log(element.name);
-            const divResult = document.createElement('div');
+            // eslint-disable-next-line
+            let divResult = document.createElement('div');
             divResult.classList.add('Result-City');
-            divResult.innerHTML = element.name;
+            // divResult.innerHTML = element.name;
+            this.coordsResult(element.lat, element.long, divResult, element.name, element.gmt);
             div.appendChild(divResult);
+            // coords to result
           }
         });
       }
@@ -221,7 +290,7 @@ export default {
     justify-content: center;
     align-items: center;
     &-Inner{
-      transition: 0.4s;
+      transition: 0.3s;
       z-index: 2;
       width: 100%;
       height: calc(50vh + calc(20vw - 12px));
@@ -244,7 +313,7 @@ export default {
     }
   }
   .mainValues{
-    transition: 0.2s;
+    transition: 0.3s;
     opacity: 1;
     @include centerItems();
     color: white;
@@ -302,7 +371,7 @@ export default {
     }
   }
   .Form{
-        transition: 0.4s;
+        transition: 0.3s;
         width: 100%;
         min-height: 20vh;
         height: auto;
@@ -326,7 +395,7 @@ export default {
           opacity: 1;
           transition: 1s;
           height: 0px;
-          min-height: calc(20vw - 12px);
+          min-height: calc(7vw - 12px);
         }
         &-InputField{
           height: 10vh;
@@ -350,7 +419,7 @@ export default {
       height: calc(20vw - 12px);
       background: rgba($color: #FFFF, $alpha: 0.06);
       margin: 5px;
-      animation: goingin 0.6s ease-in-out alternate 1;
+      animation: goingin 0.2s ease-in-out alternate 1;
       border: 1px solid white;
     }
   }

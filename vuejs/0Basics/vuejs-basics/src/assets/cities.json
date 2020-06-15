@@ -3,7 +3,8 @@
         {
             "name": "Shanghai",
             "lat": 31.23,
-            "long": 121.47
+            "long": 121.47,
+            "gmt": 8
         },
         {
             "name": "Bombay", 
