@@ -145,7 +145,7 @@ export default {
       this.newMyCityDB = this.myCityDB.cities;
       // console.log(this.newMyCityDB);
     },
-    coordsResult(lat, long, divFunc, name, gmt) {
+    coordsResult(lat, long, divFunc, name, gmtH, gmtM) {
       setTimeout(() => {
         axios.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
           .then((response) => {
@@ -176,10 +176,13 @@ export default {
               hourMto = hourM + 1;
               hourEto = hourE - 1;
               // date timezone validation
-              hourM += gmt;
-              hourE += gmt;
-              hourMto += gmt;
-              hourEto += gmt;
+              hourM += gmtH;
+              hourE += gmtH;
+              hourMto += gmtH;
+              hourEto += gmtH;
+              minutesM += gmtM;
+              minutesE += gmtM;
+              // hour validation if gmt is starting next day
               if (hourM > 12) {
                 hourM -= 12;
                 splitedSecondM[1] = 'AM';
@@ -195,6 +198,24 @@ export default {
               if (hourEto > 12) {
                 hourEto -= 12;
                 splitedSecondE[1] = 'PM';
+              }
+              if (minutesM > 59) {
+                minutesM -= 60;
+                hourM += 1;
+                hourMto += 1;
+              } else if (minutesM < 0) {
+                minutesM += 60;
+                hourM -= 1;
+                hourMto -= 1;
+              }
+              if (minutesE > 59) {
+                minutesE -= 60;
+                hourE += 1;
+                hourEto += 1;
+              } else if (minutesE < 0) {
+                minutesE += 60;
+                hourE -= 1;
+                hourEto -= 1;
               }
               // eslint-disable-next-line
               divFunc.innerHTML = `${name} <br /> ${hourM}:${minutesM} ${splitedSecondM[1]} - ${hourMto}:${minutesM} ${splitedSecondM[1]} <br />
@@ -252,7 +273,8 @@ export default {
             let divResult = document.createElement('div');
             divResult.classList.add('Result-City');
             // divResult.innerHTML = element.name;
-            this.coordsResult(element.lat, element.long, divResult, element.name, element.gmt);
+            // eslint-disable-next-line
+            this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
             div.appendChild(divResult);
             // coords to result
           }
@@ -395,7 +417,7 @@ export default {
           opacity: 1;
           transition: 1s;
           height: 0px;
-          min-height: calc(7vw - 12px);
+          min-height: calc(5vw - 12px);
         }
         &-InputField{
           height: 10vh;

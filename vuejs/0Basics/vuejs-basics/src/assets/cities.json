@@ -4,37 +4,51 @@
             "name": "Shanghai",
             "lat": 31.23,
             "long": 121.47,
-            "gmt": 8
+            "gmtH": 8,
+            "gmtM": 0
         },
         {
             "name": "Bombay", 
             "lat": 18.96,
-            "long": 72.82
+            "long": 72.82,
+            "gmtH": 5,
+            "gmtM": 30
         },
         {
             "name": "Karachi", 
             "lat": 24.86,
-            "long": 67.01
+            "long": 67.01,
+            "gmtH": 5,
+            "gmtM": 0
+            
         },
         {
             "name": "Buenos Aires", 
             "lat": -34.61,
-            "long": -58.37
+            "long": -58.37,
+            "gmtH": -3,
+            "gmtM": 0
         },
         {
             "name": "Delhi", 
             "lat": 28.67,
-            "long": 77.21
+            "long": 77.21,
+            "gmtH": 5,
+            "gmtM": 30
         },
         {
             "name": "Istanbul", 
             "lat": 41.1,
-            "long": 29
+            "long": 29,
+            "gmtH": 3,
+            "gmtM": 0
         },
         {
             "name": "Manila", 
             "lat": 14.62,
-            "long": 120.97
+            "long": 120.97,
+            "gmtH": 8,
+            "gmtM": 0
         }
     ]
 }
