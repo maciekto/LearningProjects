@@ -127,6 +127,41 @@ export default {
                 hourE += dateFinish;
                 hourMto += dateFinish;
                 hourEto += dateFinish;
+                // hour validation if gmt is starting next day
+                if (hourM > 12) {
+                  hourM -= 12;
+                  splitedSecondM[1] = 'AM';
+                }
+                if (hourMto > 12) {
+                  hourMto -= 12;
+                  splitedSecondM[1] = 'AM';
+                }
+                if (hourE > 12) {
+                  hourE -= 12;
+                  splitedSecondE[1] = 'PM';
+                }
+                if (hourEto > 12) {
+                  hourEto -= 12;
+                  splitedSecondE[1] = 'PM';
+                }
+                if (minutesM > 59) {
+                  minutesM -= 60;
+                  hourM += 1;
+                  hourMto += 1;
+                } else if (minutesM < 0) {
+                  minutesM += 60;
+                  hourM -= 1;
+                  hourMto -= 1;
+                }
+                if (minutesE > 59) {
+                  minutesE -= 60;
+                  hourE += 1;
+                  hourEto += 1;
+                } else if (minutesE < 0) {
+                  minutesE += 60;
+                  hourE -= 1;
+                  hourEto -= 1;
+                }
                 mainValues.innerHTML = `Morning: ${hourM}:${minutesM} ${splitedSecondM[1]} - ${hourMto}:${minutesM} ${splitedSecondM[1]} <br />
                 Evening: ${hourEto}:${minutesE} ${splitedSecondE[1]} - ${hourE}:${minutesE} ${splitedSecondE[1]}`;
               }
@@ -147,7 +182,9 @@ export default {
     },
     coordsResult(lat, long, divFunc, name, gmtH, gmtM) {
       setTimeout(() => {
-        axios.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
+        // eslint-disable-next-line
+        divFunc.innerHTML = `${name}`;
+        axios.get(`ahttps://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
           .then((response) => {
             function morningGoldenHour(response1, response2) {
               let splitedM = null;
@@ -229,7 +266,7 @@ export default {
             // eslint-disable-next-line
             console.log(error);
           });
-      }, 500);
+      }, 1);
     },
   },
   watch: {
@@ -439,10 +476,17 @@ export default {
       border-radius: 50%;
       width: calc(20vw - 12px);
       height: calc(20vw - 12px);
-      background: rgba($color: #FFFF, $alpha: 0.06);
+      background: rgba($color: #FFF, $alpha: 0.06);
       margin: 5px;
       animation: goingin 0.2s ease-in-out alternate 1;
       border: 1px solid white;
+    }
+    &-City:hover {
+      cursor: pointer;
+      background: rgba($color: #fff, $alpha: 1);
+      transition: 0.25s;
+      color: black;
+      border: 1px solid black;
     }
   }
   ::placeholder {
