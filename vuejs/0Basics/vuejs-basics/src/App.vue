@@ -180,11 +180,9 @@ export default {
       this.newMyCityDB = this.myCityDB.cities;
       // console.log(this.newMyCityDB);
     },
-    coordsResult(lat, long, divFunc, name, gmtH, gmtM) {
+    clickcoordsResult(lat, long, divFunc, name, gmtH, gmtM) {
       setTimeout(() => {
-        // eslint-disable-next-line
-        divFunc.innerHTML = `${name}`;
-        axios.get(`ahttps://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
+        axios.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`)
           .then((response) => {
             function morningGoldenHour(response1, response2) {
               let splitedM = null;
@@ -219,21 +217,34 @@ export default {
               hourEto += gmtH;
               minutesM += gmtM;
               minutesE += gmtM;
+              console.log(hourE);
               // hour validation if gmt is starting next day
               if (hourM > 12) {
                 hourM -= 12;
                 splitedSecondM[1] = 'AM';
+              } else if (hourM < 0) {
+                hourM += 12;
+                splitedSecondE[1] = 'AM';
               }
               if (hourMto > 12) {
                 hourMto -= 12;
                 splitedSecondM[1] = 'AM';
+              } else if (hourMto < 0) {
+                hourMto += 12;
+                splitedSecondE[1] = 'AM';
               }
               if (hourE > 12) {
                 hourE -= 12;
                 splitedSecondE[1] = 'PM';
+              } else if (hourE < 0) {
+                hourE += 12;
+                splitedSecondE[1] = 'PM';
               }
               if (hourEto > 12) {
                 hourEto -= 12;
+                splitedSecondE[1] = 'PM';
+              } else if (hourEto < 0) {
+                hourEto += 12;
                 splitedSecondE[1] = 'PM';
               }
               if (minutesM > 59) {
@@ -268,10 +279,18 @@ export default {
           });
       }, 1);
     },
+    coordsResult(lat, long, divFunc, name, gmtH, gmtM) {
+      // eslint-disable-next-line
+      divFunc.innerHTML = `${name}`;
+      divFunc.addEventListener('click', () => {
+        this.clickcoordsResult(lat, long, divFunc, name, gmtH, gmtM);
+      });
+    },
   },
   watch: {
     // eslint-disable-next-line
     cityPick:function () {
+      const home = document.querySelector('.home');
       const div = document.querySelector('.Form-Results');
       const mainValues = document.querySelector('.mainValues');
       const appAfter = document.querySelector('.app-after');
@@ -286,12 +305,17 @@ export default {
           appInner.style.cssText = 'justify-content: center;';
           mainValues.style.cssText = 'display: flex';
           appAfter.style.cssText = 'opacity: 0;';
+          div.style.cssText = '';
+          home.style.cssText = '';
           while (child) {
             div.removeChild(child);
             child = div.lastElementChild;
           }
         }, 10);
       } else {
+        let i = 0;
+        div.style.cssText = 'height: 80vh';
+        home.style.cssText = 'height: 10vh';
         appInner.style.cssText = 'height: 100vh;';
         // home.style.cssText = 'opacity: 0';
         mainValues.style.cssText = 'opacity: 0; height: 0px; margin-bottom: 0px;';
@@ -299,20 +323,23 @@ export default {
         setTimeout(() => {
           // home.style.cssText = 'display: none';
           mainValues.style.cssText = 'display: none; opacity: 0; height: 0px;';
-        }, 300);
+        }, 200);
         this.myCityDB.cities.forEach((element) => {
+          i += 1;
           // console.log(element.name);
           const word = element.name.toUpperCase();
           const exists = word.includes(this.cityPick.toUpperCase());
           if (exists === true) {
-            // console.log(element.name);
-            // eslint-disable-next-line
-            let divResult = document.createElement('div');
-            divResult.classList.add('Result-City');
-            // divResult.innerHTML = element.name;
-            // eslint-disable-next-line
-            this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
-            div.appendChild(divResult);
+            if (i < 10) {
+              // console.log(element.name);
+              // eslint-disable-next-line
+              let divResult = document.createElement('div');
+              divResult.classList.add('Result-City');
+              // divResult.innerHTML = element.name;
+              // eslint-disable-next-line
+              this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
+              div.appendChild(divResult);
+            }
             // coords to result
           }
         });
@@ -349,17 +376,17 @@ export default {
     justify-content: center;
     align-items: center;
     &-Inner{
-      transition: 0.3s;
+      transition: 0.2s;
       z-index: 2;
       width: 100%;
       height: calc(50vh + calc(20vw - 12px));
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       flex-direction: column;
     }
     &-after{
-      transition: 1s;
+      transition: background-color 1s ease-in-out, opacity 1s ease-in-out;;
       z-index: 1;
       content: '';
       position: absolute;
@@ -367,12 +394,12 @@ export default {
       bottom: 0;
       width: 100%;
       height: 100vh;
-      background: black;
+      background-color: black;
       opacity: 0;
     }
   }
   .mainValues{
-    transition: 0.3s;
+    transition: 0.2s;
     opacity: 1;
     @include centerItems();
     color: white;
@@ -430,7 +457,7 @@ export default {
     }
   }
   .Form{
-        transition: 0.3s;
+        transition: 0.2s;
         width: 100%;
         min-height: 20vh;
         height: auto;
@@ -518,7 +545,7 @@ export default {
     letter-spacing: 1.5px;
   }
   .home {
-    transition: 1s;
+    transition: 0s;
     opacity: 1;
     display: flex;
     justify-content: center;

@@ -753,3 +753,305 @@ Cuautitlan Izcalli	-99.25	19.65
 Nuremberg	11.05	49.45
 Santa Fe	-60.69	-31.6
 Joinville	-48.84	-26.32
+,
+        {
+            "name": "Istanbul", 
+            "lat": 41.1,
+            "long": 29,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Manila", 
+            "lat": 14.62,
+            "long": 120.97,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Sao Paulo", 
+            "lat": -23.53,
+            "long": -46.63,
+            "gmtH": -3,
+            "gmtM": 0
+        },
+        {
+            "name": "Moscow", 
+            "lat": 55.75,
+            "long": 37.62,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Dhaka", 
+            "lat": 23.7,
+            "long": 90.39,
+            "gmtH": 6,
+            "gmtM": 0
+        },
+        {
+            "name": "Soul", 
+            "lat": 37.56,
+            "long": 126.99,
+            "gmtH": 9,
+            "gmtM": 0
+        },
+        {
+            "name": "Lagos", 
+            "lat": 6.5,
+            "long": 3.35,
+            "gmtH": 1,
+            "gmtM": 0
+        },
+        {
+            "name": "Kinshasa", 
+            "lat": -4.31,
+            "long": 15.32,
+            "gmtH": 1,
+            "gmtM": 0
+        },
+        {
+            "name": "Tokyo", 
+            "lat": 35.67,
+            "long": 139.77,
+            "gmtH": 9,
+            "gmtM": 0 
+        },
+        {
+            "name": "Mexico City", 
+            "lat": 19.43,
+            "long": -99.14,
+            "gmtH": -5,
+            "gmtM": 0
+        },
+        {
+            "name": "Jakarta", 
+            "lat": -6.18,
+            "long": 106.83,
+            "gmtH": 7,
+            "gmtM": 0
+        },
+        {
+            "name": "New York", 
+            "lat": 40.67,
+            "long": -73.94,
+            "gmtH": -4,
+            "gmtM": 0
+        },
+        {
+            "name": "Tehran", 
+            "lat": 35.67,
+            "long": 51.43,
+            "gmtH": 4,
+            "gmtM": 30
+        },
+        {
+            "name": "Cairo", 
+            "lat": 30.06,
+            "long": 31.25,
+            "gmtH": 2,
+            "gmtM": 0
+        },
+        {
+            "name": "Lima", 
+            "lat": -12.07,
+            "long": -77.05,
+            "gmtH": -5,
+            "gmtM": 0
+        },
+        {
+            "name": "Peking", 
+            "lat": 39.93,
+            "long": 116.4,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "London", 
+            "lat": 51.52,
+            "long": -0.1,
+            "gmtH": 1,
+            "gmtM": 0
+        },
+        {
+            "name": "Bogota", 
+            "lat": 4.63,
+            "long": -74.09,
+            "gmtH": -5,
+            "gmtM": 0
+        },
+        {
+            "name": "Lahore", 
+            "lat": 31.56,
+            "long": 74.35,
+            "gmtH": 5,
+            "gmtM": 0
+        },
+        {
+            "name": "Rio de Janeiro", 
+            "lat": -22.91,
+            "long": -43.2,
+            "gmtH": -3,
+            "gmtM": 0
+        },
+        {
+            "name": "Bangkok", 
+            "lat": 13.73,
+            "long": 100.5,
+            "gmtH": 7,
+            "gmtM": 0
+        },
+        {
+            "name": "Bagdad", 
+            "lat": 33.33,
+            "long": 44.44,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Bangalore", 
+            "lat": 12.97,
+            "long": 77.56,
+            "gmtH": 5,
+            "gmtM": 30
+        },
+        {
+            "name": "Santiago", 
+            "lat": -33.46,
+            "long": -70.64,
+            "gmtH": -4,
+            "gmtM": 0
+        },
+        {
+            "name": "Calcutta", 
+            "lat": 22.57,
+            "long": 88.36,
+            "gmtH": 5,
+            "gmtM": 30
+        },
+        {
+            "name": "Singapore", 
+            "lat": 1.3,
+            "long": 103.85,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Toronto", 
+            "lat": 43.65,
+            "long": -79.38,
+            "gmtH": -4,
+            "gmtM": 0
+        },
+        {
+            "name": "Rangoon", 
+            "lat": 16.79,
+            "long": 96.15,
+            "gmtH": 6,
+            "gmtM": 30
+        },
+        {
+            "name": "Ibadan", 
+            "lat": 7.38,
+            "long": 3.93,
+            "gmtH": 1,
+            "gmtM": 0
+        },
+        {
+            "name": "Riyadh", 
+            "lat": 24.65,
+            "long": 46.77,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Madras", 
+            "lat": 13.09,
+            "long": 80.27,
+            "gmtH": 5,
+            "gmtM": 30
+        },
+        {
+            "name": "Chongqing", 
+            "lat": 29.57,
+            "long": 106.58,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Ho Chi Minh City", 
+            "lat": 10.78,
+            "long": 106.69,
+            "gmtH": 7,
+            "gmtM": 0
+        },
+        {
+            "name": "Xian", 
+            "lat": 34.27,
+            "long": 108.9,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Wuhan", 
+            "lat": 30.58,
+            "long": 114.27,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Alexandria", 
+            "lat": 31.22,
+            "long": 29.95,
+            "gmtH": 2,
+            "gmtM": 0
+        },
+        {
+            "name": "Saint Petersburg", 
+            "lat": 59.93,
+            "long": 30.32,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Hyderabad", 
+            "lat": 17.4,
+            "long": 78.48,
+            "gmtH": 5,
+            "gmtM": 30
+        },
+        {
+            "name": "Chengdu", 
+            "lat": 30.67,
+            "long": 104.07,
+            "gmtH": 8,
+            "gmtM": 0
+        },
+        {
+            "name": "Abidjan", 
+            "lat": 5.33,
+            "long": -4.03,
+            "gmtH": 0,
+            "gmtM": 0
+        },
+        {
+            "name": "Ankara", 
+            "lat": 39.93,
+            "long": 32.85,
+            "gmtH": 3,
+            "gmtM": 0
+        },
+        {
+            "name": "Ahmadabad", 
+            "lat": 23.03,
+            "long": 72.58,
+            "gmtH": 5,
+            "gmtM": 30
+        },
+        {
+            "name": "Los Angeles", 
+            "lat": 34.11,
+            "long": -118.41,
+            "gmtH": -7,
+            "gmtM": 0
+        }
