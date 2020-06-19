@@ -329,7 +329,6 @@ export default {
           // console.log(element.name);
           const word = element.name.toUpperCase();
           const exists = word.includes(this.cityPick.toUpperCase());
-          console.log(width);
           if (exists === true) {
             if (i < 10 && width >= 1440) {
               console.log(width);
