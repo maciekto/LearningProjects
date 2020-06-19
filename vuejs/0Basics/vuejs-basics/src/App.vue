@@ -21,7 +21,7 @@
       <div class="location"></div> -->
     </div>
     <div class="map"></div>
-    <div class="app-after"></div>
+    <div class="app-after" v-on:click="removeResults()"></div>
   </div>
 </template>
 
@@ -277,7 +277,7 @@ export default {
             // eslint-disable-next-line
             console.log(error);
           });
-      }, 1);
+      }, 10);
     },
     coordsResult(lat, long, divFunc, name, gmtH, gmtM) {
       // eslint-disable-next-line
@@ -314,6 +314,7 @@ export default {
         }, 10);
       } else {
         let i = 0;
+        const width = window.innerWidth;
         div.style.cssText = 'height: 80vh';
         home.style.cssText = 'height: 10vh';
         appInner.style.cssText = 'height: 100vh;';
@@ -325,13 +326,13 @@ export default {
           mainValues.style.cssText = 'display: none; opacity: 0; height: 0px;';
         }, 200);
         this.myCityDB.cities.forEach((element) => {
-          i += 1;
           // console.log(element.name);
           const word = element.name.toUpperCase();
           const exists = word.includes(this.cityPick.toUpperCase());
+          console.log(width);
           if (exists === true) {
-            if (i < 10) {
-              // console.log(element.name);
+            if (i < 10 && width >= 1440) {
+              console.log(width);
               // eslint-disable-next-line
               let divResult = document.createElement('div');
               divResult.classList.add('Result-City');
@@ -339,6 +340,26 @@ export default {
               // eslint-disable-next-line
               this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
               div.appendChild(divResult);
+              i += 1;
+            } else if (i < 3 && (width < 1440 && width > 769)) {
+              console.log(width);
+              // eslint-disable-next-line
+              let divResult = document.createElement('div');
+              divResult.classList.add('Result-City');
+              // divResult.innerHTML = element.name;
+              // eslint-disable-next-line
+              this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
+              div.appendChild(divResult);
+              i += 1;
+            } else if (i < 1 && width < 768) {
+              console.log(width);
+              // eslint-disable-next-line
+              let divResult = document.createElement('div');
+              divResult.classList.add('Result-City');
+              // eslint-disable-next-line
+              this.coordsResult(element.lat, element.long, divResult, element.name, element.gmtH, element.gmtM);
+              div.appendChild(divResult);
+              i += 1;
             }
             // coords to result
           }
@@ -386,9 +407,9 @@ export default {
       flex-direction: column;
     }
     &-after{
+      cursor: pointer;
       transition: background-color 1s ease-in-out, opacity 1s ease-in-out;;
       z-index: 1;
-      content: '';
       position: absolute;
       top: 0;
       bottom: 0;
@@ -405,9 +426,9 @@ export default {
     color: white;
     font-size: 1rem;
     text-align: center;
-    margin-bottom: 10vh;
     width: 100vw;
-    height: 10vh;
+    height: 15vh;
+    margin-bottom: 5vh;
     &_Result {
       height: 0px;
       display: none;
@@ -476,6 +497,10 @@ export default {
             border-bottom: 1px solid white;
             text-align: center;
             outline: none;
+            @media (max-width: 768px) {
+              width: 200px;
+            font-size: 13px;
+          }
         }
         &-Results{
           opacity: 1;
@@ -495,6 +520,7 @@ export default {
     justify-content: center;
     height: auto;
     &-City{
+      transition: 0.4s;
       color: white;
       display: flex;
       justify-content: center;
@@ -507,13 +533,22 @@ export default {
       margin: 5px;
       animation: goingin 0.2s ease-in-out alternate 1;
       border: 1px solid white;
+      @media (max-width: 1440px) {
+        width: calc(40vw - 12px);
+        height: calc(40vw - 12px);
+      }
+      @media (max-width: 768px) {
+        width: calc(60vw - 12px);
+        height: calc(60vw - 12px);
+      }
     }
     &-City:hover {
       cursor: pointer;
-      background: rgba($color: #fff, $alpha: 1);
-      transition: 0.25s;
-      color: black;
-      border: 1px solid black;
+      background: rgba($color: #fff, $alpha: 0.0);
+      transition: 0.4s;
+      color: white;
+      border: 1px solid white;
+      box-shadow: 0px 0px 10px white;
     }
   }
   ::placeholder {
