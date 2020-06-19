@@ -1,5 +1,8 @@
 # vuejs-basics
 
+Golden Hour App 1.0.0
+https://goldenhour.netlify.app/
+
 ## Project setup
 ```
 npm install
