@@ -1,4 +1,4 @@
 # LearningProjects
 Repo where I learn new skils.
 
-Vue, Js
+Vue, Js, Vuex
