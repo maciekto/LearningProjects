@@ -3,3 +3,10 @@ Variables and scope - Where Variables are stored(RAM) example: char == 1 byte
 Arrays - just grouping variables
 Comand-Line Variables - int main(ARGUMENTS)
 Functions
+Week3:
+Linear Search
+Binary Search
+
+Bubble sort
+Select sort
+Merge sort
