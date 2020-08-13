@@ -4,9 +4,9 @@ Arrays - just grouping variables
 Comand-Line Variables - int main(ARGUMENTS)
 Functions
 Week3:
-Linear Search
-Binary Search
+Linear Search - relearn
+Binary Search - relearn
 
-Bubble sort
-Select sort
-Merge sort
+Bubble sort - relearn
+Select sort - relearn
+Merge sort - relearn
